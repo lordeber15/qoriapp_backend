@@ -7,7 +7,7 @@ const Limpieza = sequelize.define("limpieza", {
     primaryKey: true,
     autoIncrement: true,
   },
-  insumo: {
+  insumos: {
     type: DataTypes.STRING,
     allowNull: false,
   },
