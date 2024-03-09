@@ -23,5 +23,45 @@ const createMateriaPrima = async (req, res) => {
     return res.status(500).json({ message: error.message });
   }
 };
+const deleteMateriaPrima = async (req, res) => {
+  try {
+    const { id } = req.params;
 
-module.exports = { getMateriaPrima, createMateriaPrima };
+    const materiaPrima = await MateriaPrima.findByPk(id);
+
+    if (!materiaPrima) {
+      return res.status(404).json({ message: "Elemento no encontrado" });
+    }
+
+    await materiaPrima.destroy();
+
+    res.json({ message: "Elemento eliminado correctamente" });
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+const updateMateriaPrima = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { insumos, medida, inicial, ingreso, salida } = req.body;
+
+    const materiaPrima = await MateriaPrima.findByPk(id);
+
+    if (!materiaPrima) {
+      return res.status(404).json({ message: "Elemento no encontrado" });
+    }
+
+    limpieza.insumos = insumos;
+    limpieza.medida = medida;
+    limpieza.inicial = inicial;
+    limpieza.ingreso = ingreso;
+
+    await limpieza.save();
+
+    res.json(limpieza);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
+module.exports = { getMateriaPrima, createMateriaPrima,deleteMateriaPrima , updateMateriaPrima};
