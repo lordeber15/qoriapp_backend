@@ -13,7 +13,7 @@ const sequelize = new Sequelize(
     },
   }
 
-  /* "postgres://postgres:123456@localhost:5432/qoriapp"*/
+  /*"postgres://postgres:123456@localhost:5432/qoriapp"*/
 );
 
 module.exports = sequelize;
