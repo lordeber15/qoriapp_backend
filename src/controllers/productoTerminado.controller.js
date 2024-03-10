@@ -27,4 +27,47 @@ const createPterminado = async (req, res) => {
   }
 };
 
-module.exports = { getPterminado, createPterminado };
+const deletePterminado = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const productoTerminado = await ProductoTerminado.findByPk(id);
+
+    if (!productoTerminado) {
+      return res.status(404).json({ message: "Elemento no encontrado" });
+    }
+
+    await productoTerminado.destroy();
+
+    res.json({ message: "Elemento eliminado correctamente" });
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+const updatePterminado = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { tpasta, formato, unidad, presentacion, lote, fechavencimiento } = req.body;
+
+    const productoTerminado = await ProductoTerminado.findByPk(id);
+
+    if (!productoTerminado) {
+      return res.status(404).json({ message: "Elemento no encontrado" });
+    }
+
+    productoTerminado.tpasta = tpasta;
+    productoTerminado.formato = formato;
+    productoTerminado.unidad = unidad;
+    productoTerminado.presentacion = presentacion;
+    productoTerminado.lote = lote;
+    productoTerminado.fechavencimiento = fechavencimiento;
+
+    await productoTerminado.save();
+
+    res.json(productoTerminado);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
+module.exports = { getPterminado, createPterminado,deletePterminado,updatePterminado };

@@ -19,7 +19,7 @@ const MateriaPrima = sequelize.define("materiaPrima", {
     type: DataTypes.DECIMAL,
     allowNull: false,
   },
-  egreso: {
+  salida: {
     type: DataTypes.DECIMAL,
     allowNull: false,
   },
