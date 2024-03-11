@@ -15,6 +15,10 @@ const MateriaPrima = sequelize.define("materiaPrima", {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  inicial: {
+    type: DataTypes.DECIMAL,
+    allowNull: false,
+  },
   ingreso: {
     type: DataTypes.DECIMAL,
     allowNull: false,

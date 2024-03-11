@@ -11,10 +11,11 @@ const getMateriaPrima = async (req, res) => {
 
 const createMateriaPrima = async (req, res) => {
   try {
-    const { insumo, medida, ingreso ,salida} = req.body;
+    const { insumo, medida,inicial, ingreso ,salida} = req.body;
     const newMateriaPrima = await MateriaPrima.create({
       insumo,
       medida,
+      inicial,
       ingreso,
       salida
     });
@@ -43,7 +44,7 @@ const deleteMateriaPrima = async (req, res) => {
 const updateMateriaPrima = async (req, res) => {
   try {
     const { id } = req.params;
-    const { insumo, medida, ingreso, salida } = req.body;
+    const { insumo, medida,inicial, ingreso, salida } = req.body;
 
     const materiaPrima = await MateriaPrima.findByPk(id);
 
@@ -53,6 +54,7 @@ const updateMateriaPrima = async (req, res) => {
 
     materiaPrima.insumo = insumo;
     materiaPrima.medida = medida;
+    materiaPrima.inicial = inicial;
     materiaPrima.ingreso = ingreso;
     materiaPrima.salida = salida;
 

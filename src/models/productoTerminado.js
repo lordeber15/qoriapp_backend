@@ -20,7 +20,7 @@ const ProductoTerminado = sequelize.define("productoTerminado", {
     allowNull: false,
   },
   presentacion: {
-    type: DataTypes.DECIMAL,
+    type: DataTypes.STRING,
     allowNull: false,
   },
   lote: {
